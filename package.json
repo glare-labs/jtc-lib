@@ -1,0 +1,73 @@
+{
+  "name": "@glare-labs/jtc-lib",
+  "displayName": "jtc-lib",
+  "description": "A library that converts JavaScript objects to CSS.",
+  "author": "glare-labs",
+  "license": "MIT",
+  "version": "0.0.1",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": ["convertor", "javascript", "css", "style", "util", "css-lib"],
+  "type": "module",
+  "homepage": "https://github.com/glare-labs/jtc-lib",
+  "bugs": {
+    "url": "https://github.com/glare-labs/jtc-lib/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/glare-labs/jtc-lib.git"
+  },
+  "main": "build/index.esm.js",
+  "module": "build/index.esm.js",
+  "files": [
+    "build/**/*"
+  ],
+  "exports": {
+    ".": {
+      "import": "./build/index.esm.js",
+      "require": "./build/index.cjs.js",
+      "types": "./build/index.d.ts",
+      "default": "./build/index.js"
+    },
+    "./*": {
+      "import": "./*.esm.js",
+      "require": "./*.cjs.js",
+      "types": "./index.d.ts",
+      "default": "./*.esm.js"
+    }
+  },
+  "types": "build/index.d.ts",
+  "typings": "build/index.d.ts",
+  "scripts": {
+    "build": "wireit",
+    "watch": "wireit",
+    "test": "wireit"
+  },
+  "workspaces": [
+    "test"
+  ],
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "rollup": "^4.21.2",
+    "tslib": "^2.7.0",
+    "typescript": "^5.5.4",
+    "wireit": "^0.14.9"
+  },
+  "wireit": {
+    "build": {
+      "command": "npx rollup --config",
+      "output": [
+        "build/**/*"
+      ]
+    },
+    "watch": {
+      "command": "npx rollup --config --watch --watch.buildDelay 1000",
+      "clean": true
+    },
+    "test": {
+      "command": "node ./test/index.js"
+    }
+  }
+}
